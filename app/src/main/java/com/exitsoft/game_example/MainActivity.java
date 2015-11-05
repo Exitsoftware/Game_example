@@ -15,8 +15,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
-    //    ImageButton btn1 = (ImageButton) findViewById(R.id.imageButton2);
-    ArrayList<Integer> queue = new ArrayList<Integer>();
+    
+    // queue라는 이름의 Integer ArrayList 선언하기
+    // your code!
+    
     ArrayList<ImageButton> btnList = new ArrayList<ImageButton>();
 
     ImageButton btn1;
@@ -52,11 +54,9 @@ public class MainActivity extends ActionBarActivity {
         btnList.add(btn5);
 
 
-
-        for(int i = 0; i < 5; i++){
-            int rndInt = (int) (Math.random()*4);
-            queue.add(rndInt);
-        }
+        // 난수 5개를 ArrayList에 추가하기 (단, 난수는 0~3 까지의 정수) (Math.random 함수 사용하기)
+        // your code!
+        
 
         refreshImage();
 
@@ -77,11 +77,12 @@ public class MainActivity extends ActionBarActivity {
         if(action == MotionEvent.ACTION_DOWN){
             int rndInt = (int) (Math.random()*4);
 
-        // 왼쪽 오른쪽 나눠서 맞으면 100점 추가 콤보 추가 아니면, -50점 콤보 0
+            // 왼쪽 오른쪽 나눠서 맞으면 100점 추가 콤보 추가 아니면, -50점 콤보 0
+            // your code!
 
-
-            queue.remove(0);
-            queue.add(rndInt);
+            // queue의 0번째 값을 지우고, 맨 뒤에 난수를 add시키기.
+            // your code!
+            
             refreshImage();
 
 
