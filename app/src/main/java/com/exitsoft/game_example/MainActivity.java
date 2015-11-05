@@ -94,6 +94,10 @@ public class MainActivity extends ActionBarActivity {
 
     public void refreshImage(){
         for(int i = 0; i < btnList.size(); i++){
+            int rndInt = queue.get(i);
+            ImageButton curBtn = btnList.get(i);
+            
+            
            // Your Code!
         }
         if(combo == 0) comboView.setVisibility(View.INVISIBLE);
