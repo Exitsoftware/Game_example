@@ -18,7 +18,7 @@ public class MainActivity extends ActionBarActivity {
     
     // queue라는 이름의 Integer ArrayList 선언하기
     // your code!
-    
+    ArrayList<Integer> queue = new ArrayList<Integer>();
     ArrayList<ImageButton> btnList = new ArrayList<ImageButton>();
 
     ImageButton btn1;
@@ -57,6 +57,10 @@ public class MainActivity extends ActionBarActivity {
         // 난수 5개를 ArrayList에 추가하기 (단, 난수는 0~3 까지의 정수) (Math.random 함수 사용하기)
         // your code!
         
+        for(int i = 0; i < 5; i++){
+            int rndInt = (int)(Math.random() * 4);
+            queue.add(rndInt);
+        }        
 
         refreshImage();
 
@@ -76,13 +80,38 @@ public class MainActivity extends ActionBarActivity {
 
         if(action == MotionEvent.ACTION_DOWN){
             int rndInt = (int) (Math.random()*4);
-
+            
+            if(event.getX() < width){
+                if(queue.get(0)%2 == 0){
+                    score += 100;
+                    combo++;
+                }
+                else{
+                    score = 0;
+                    combo = 0;
+                }
+            }
+            else{
+                if(queue.get(0)%2 == 1){
+                    score += 100;
+                    combo++;
+                }
+                else{
+                
+                    score = 0;
+                    combo = 0;
+                }
+            }
             // 왼쪽 오른쪽 나눠서 맞으면 100점 추가 콤보 추가 아니면, -50점 콤보 0
             // your code!
 
             // queue의 0번째 값을 지우고, 맨 뒤에 난수를 add시키기.
             // your code!
             
+            
+            queue.remove(0);
+            int rndInt = (int) (Math.random() * 4);
+            queue.add(rndInt);
             refreshImage();
 
 
@@ -130,5 +159,17 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    
+     private void saveHighScore(){
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("highScore", String.valueOf(score));
+        editor.commit();
+    }
+
+    private String getHighScore(){
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        return pref.getString("highScore", "NULL").toString();
     }
 }
