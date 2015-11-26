@@ -102,11 +102,6 @@ public class MainActivity extends ActionBarActivity {
                     combo = 0;
                 }
             }
-            // 왼쪽 오른쪽 나눠서 맞으면 100점 추가 콤보 추가 아니면, -50점 콤보 0
-            // your code!
-
-            // queue의 0번째 값을 지우고, 맨 뒤에 난수를 add시키기.
-            // your code!
             
             
             queue.remove(0);
