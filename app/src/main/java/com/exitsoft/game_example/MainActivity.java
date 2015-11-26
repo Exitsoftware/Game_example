@@ -38,6 +38,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // SharedPreference로부터 highScore 가져오기,
+        // 단 SharedPreference에 highScore값이 없을 경우에는 가져오지 않기
+        
+        if(!getHighScore().equals("NULL")) highScore = Integer.parseInt(getHighScore());
+        
         scoreView = (TextView) findViewById(R.id.scoreView);
         comboView = (TextView) findViewById(R.id.comboView);
 
@@ -54,9 +60,8 @@ public class MainActivity extends ActionBarActivity {
         btnList.add(btn5);
 
 
-        // 난수 5개를 ArrayList에 추가하기 (단, 난수는 0~3 까지의 정수) (Math.random 함수 사용하기)
-        // your code!
         
+        //  5% 의 확률로 아이템 넣기
         for(int i = 0; i < 5; i++){
             int rndInt = (int)(Math.random() * 4);
             queue.add(rndInt);
@@ -87,6 +92,8 @@ public class MainActivity extends ActionBarActivity {
                     combo++;
                 }
                 else{
+                    if(highScore < score) saveHighScore();
+                    highScore = Integer.parseInt(getHighScore());
                     score = 0;
                     combo = 0;
                 }
@@ -97,7 +104,8 @@ public class MainActivity extends ActionBarActivity {
                     combo++;
                 }
                 else{
-                
+                    if(highScore < score) saveHighScore();
+                    highScore = Integer.parseInt(getHighScore());
                     score = 0;
                     combo = 0;
                 }
@@ -120,6 +128,18 @@ public class MainActivity extends ActionBarActivity {
         for(int i = 0; i < btnList.size(); i++){
             int rndInt = queue.get(i);
             ImageButton curBtn = btnList.get(i);
+            if(rndInt == 0){
+                curBtn.setImageResource(R.drawable.char01);   
+            }
+            else if(rndInt == 1){
+                curBtn.setImageResource(R.drawable.char02);
+            }
+            else if(rndInt == 2){
+                curBtn.setImageResource(R.drawable.char03);    
+            }
+            else if(rndInt == 3){
+                curBtn.setImageResource(R.drawable.char04);
+            }
             
             
            // Your Code!
@@ -130,6 +150,8 @@ public class MainActivity extends ActionBarActivity {
             comboView.setText(combo + " Combo!");
         }
         scoreView.setText("Your Score\n"+ score +"점");
+        // scoreView.setText("Your Score\n"+ score +"점\n"+"High Score\n" + highScore + "점");
+
 
     }
 
