@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
 
     int score = 0;
     int combo = 0;
-    
+
     TextView scoreView;
     TextView comboView;
 
